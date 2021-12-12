@@ -43,7 +43,7 @@ public class CustomerTest {
 	
 	@Test
 	public void validateCustomerLogin() {
-		Boolean isValid =dao.validateCustomerLogin("marie", "marie123");
+		boolean isValid =dao.validateCustomerLogin("marie", "marie123");
 		System.out.println(isValid);
 	}
 }

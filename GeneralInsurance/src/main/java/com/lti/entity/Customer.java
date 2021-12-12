@@ -29,32 +29,32 @@ public class Customer {
 	//customer_id, customer_name, customer_mobile, customer_email, customer_username,
 	//customer_password, customer_address, customer_dob, license_number
 	
-//	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-//	Set<Insurance> insurance;
-//	
-//	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-//	Set<Payment> payment;
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	Set<Insurance> insurance;
+	
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	Set<Payment> payment;
 	
 	public Customer() {
 		
 	}
 		
-//	public Customer(int customerId, String customerName, String customerMobile, String customerEmail,
-//			String customerUserName, String password, String address, LocalDate customerDateOfBirth, String licenseNo,
-//			Set<Insurance> insurance, Set<Payment> payment) {
-//		super();
-//		this.customerId = customerId;
-//		this.customerName = customerName;
-//		this.customerMobile = customerMobile;
-//		this.customerEmail = customerEmail;
-//		this.customerUserName = customerUserName;
-//		this.password = password;
-//		this.address = address;
-//		this.customerDateOfBirth = customerDateOfBirth;
-//		this.licenseNo = licenseNo;
-//		this.insurance = insurance;
-//		this.payment = payment;
-//	}
+	public Customer(int customerId, String customerName, String customerMobile, String customerEmail,
+			String customerUserName, String password, String address, LocalDate customerDateOfBirth, String licenseNo,
+			Set<Insurance> insurance, Set<Payment> payment) {
+		super();
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.customerMobile = customerMobile;
+		this.customerEmail = customerEmail;
+		this.customerUserName = customerUserName;
+		this.password = password;
+		this.address = address;
+		this.customerDateOfBirth = customerDateOfBirth;
+		this.licenseNo = licenseNo;
+		this.insurance = insurance;
+		this.payment = payment;
+	}
 
 
 	public int getCustomerId() {
@@ -111,29 +111,29 @@ public class Customer {
 	public void setLicenseNo(String licenseNo) {
 		this.licenseNo = licenseNo;
 	}
-//
-//	public Set<Insurance> getInsurance() {
-//		return insurance;
-//	}
-//
-//	public void setInsurance(Set<Insurance> insurance) {
-//		this.insurance = insurance;
-//	}
-//
-//	public Set<Payment> getPayment() {
-//		return payment;
-//	}
-//
-//	public void setPayment(Set<Payment> payment) {
-//		this.payment = payment;
-//	}
-//
-//	@Override
-//	public String toString() {
-//		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerMobile="
-//				+ customerMobile + ", customerEmail=" + customerEmail + ", customerUserName=" + customerUserName
-//				+ ", password=" + password + ", address=" + address + ", customerDateOfBirth=" + customerDateOfBirth
-//				+ ", licenseNo=" + licenseNo + ", insurance=" + insurance + ", payment=" + payment + "]";
-//	}
+
+	public Set<Insurance> getInsurance() {
+		return insurance;
+	}
+
+	public void setInsurance(Set<Insurance> insurance) {
+		this.insurance = insurance;
+	}
+
+	public Set<Payment> getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Set<Payment> payment) {
+		this.payment = payment;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerMobile="
+				+ customerMobile + ", customerEmail=" + customerEmail + ", customerUserName=" + customerUserName
+				+ ", password=" + password + ", address=" + address + ", customerDateOfBirth=" + customerDateOfBirth
+				+ ", licenseNo=" + licenseNo + ", insurance=" + insurance + ", payment=" + payment + "]";
+	}
 	
 }

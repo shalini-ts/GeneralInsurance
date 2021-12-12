@@ -27,10 +27,10 @@ public class PolicyTest {
 		System.out.println(p.getPolicyType()+" "+p.getPolicyDuration());
 	}
 
-//	@Test
-//	public void removePolicyByPolicyId(){
-//		dao.removePolicyByPolicyId(1);;
-//		
-//	}
+	@Test
+	public void removePolicyByPolicyId(){
+		dao.removePolicyByPolicyId(1);
+		
+	}
 
 }

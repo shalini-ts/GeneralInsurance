@@ -1,55 +1,57 @@
 package com.lti.dao;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
+import com.lti.entity.Claim;
 import com.lti.entity.Customer;
-import com.lti.entity.Policy;
 
-public class PolicyDao {
-
+public class ClaimDao {
 	EntityManagerFactory emf;
 	EntityManager em;
 	EntityTransaction tx;
 
-	public PolicyDao() {
+	public ClaimDao() {
 		emf = Persistence.createEntityManagerFactory("pu");
 		em = emf.createEntityManager();
 		tx = em.getTransaction();
 	}
 
-	public Policy addOrUpdatePolicy(Policy policy) {
+	public Claim addOrUpdateClaim(Claim claim) {
 		try {
 			tx.begin();
-			Policy pol = em.merge(policy);
+			Claim clm = em.merge(claim);
 			tx.commit();
-			return pol;
+			return clm;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		return null;
 	}
 
-	public Policy findPolicyByPolicyId(int policyId) {
+	public Claim findClaimByClaimId(int claimId) {
 		try {
-			return em.find(Policy.class, policyId);
+			return em.find(Claim.class, claimId);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		return null;
 	}
 
-	public void removePolicyByPolicyId(int policyId) {
+	public HashSet<Claim> viewAllPendingClaims() {
 		try {
-			Policy policy = findPolicyByPolicyId(policyId);
-			em.remove(policy);
-			System.out.println("removed");
+			String jpql = " select clm from Claim clm where clm.approvalStatus=:'pending'";
+			TypedQuery<Claim> query = em.createQuery(jpql, Claim.class);
+			return new HashSet<Claim>(query.getResultList());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		return null;
 	}
-	
-	
 }
