@@ -1,11 +1,15 @@
 package com.lti.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -20,15 +24,14 @@ public class Policy {
 	String policyDuration;
 	// Policy-id,policy_premium,policy_type ,Policy_duration
 
-	@ManyToOne
-	@JoinColumn(name = "insurance_id")
-	Insurance insurance;
+	@OneToMany(mappedBy = "policy", cascade = CascadeType.ALL)
+	Set<Insurance> insurance;
 	
 	public Policy() {
 
 	}
 
-	public Policy(int policyId, double policyPremium, String policyType, String policyDuration, Insurance insurance) {
+	public Policy(int policyId, double policyPremium, String policyType, String policyDuration, Set<Insurance> insurance) {
 		super();
 		this.policyId = policyId;
 		this.policyPremium = policyPremium;
@@ -69,11 +72,12 @@ public class Policy {
 		this.policyDuration = policyDuration;
 	}
 
-	public Insurance getInsurance() {
+
+	public Set<Insurance> getInsurance() {
 		return insurance;
 	}
 
-	public void setInsurance(Insurance insurance) {
+	public void setInsurance(Set<Insurance> insurance) {
 		this.insurance = insurance;
 	}
 

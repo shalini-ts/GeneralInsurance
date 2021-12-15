@@ -21,6 +21,7 @@ public class Insurance {
 	@GeneratedValue(generator = "ins_seq", strategy = GenerationType.SEQUENCE)
 	int insuranceId;
 	LocalDate issueDate;
+	LocalDate expiryDate;
 	
 	//insurance_id,customer_id(FK), policy_id(FK), insurance_issue_date
 	
@@ -28,8 +29,9 @@ public class Insurance {
 	@JoinColumn(name = "customer_id")
 	Customer customer;
 	
-	@OneToMany(mappedBy = "insurance", cascade = CascadeType.ALL)
-	Set<Policy> policy;
+	@ManyToOne
+	@JoinColumn(name = "policy_id")
+	Policy policy;
 	
 	@OneToOne(mappedBy = "insurance",cascade = CascadeType.ALL)
 	Vehicle vehicle;
@@ -40,21 +42,21 @@ public class Insurance {
 	@OneToOne(mappedBy = "insurance",cascade = CascadeType.ALL)
 	Claim claim;
 	
-	public Insurance() {
-		
-	}
+//	public Insurance() {
+//		
+//	}
 	
-	public Insurance(int insuranceId, LocalDate issueDate, Customer customer, Set<Policy> policy, Vehicle vehicle,
-			Travel travel, Claim claim) {
-		super();
-		this.insuranceId = insuranceId;
-		this.issueDate = issueDate;
-		this.customer = customer;
-		this.policy = policy;
-		this.vehicle = vehicle;
-		this.travel = travel;
-		this.claim = claim;
-	}
+//	public Insurance(int insuranceId, LocalDate issueDate, Customer customer, Policy policy, Vehicle vehicle,
+//			Travel travel, Claim claim) {
+//		super();
+//		this.insuranceId = insuranceId;
+//		this.issueDate = issueDate;
+//		this.customer = customer;
+//		this.policy = policy;
+//		this.vehicle = vehicle;
+//		this.travel = travel;
+//		this.claim = claim;
+//	}
 
 
 
@@ -73,6 +75,15 @@ public class Insurance {
 	public void setIssueDate(LocalDate issueDate) {
 		this.issueDate = issueDate;
 	}
+	
+
+	public LocalDate getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(LocalDate expiryDate) {
+		this.expiryDate = expiryDate;
+	}
 
 	public Customer getCustomer() {
 		return customer;
@@ -82,11 +93,12 @@ public class Insurance {
 		this.customer = customer;
 	}
 
-	public Set<Policy> getPolicy() {
+
+	public Policy getPolicy() {
 		return policy;
 	}
 
-	public void setPolicy(Set<Policy> policy) {
+	public void setPolicy(Policy policy) {
 		this.policy = policy;
 	}
 
@@ -114,10 +126,6 @@ public class Insurance {
 		this.claim = claim;
 	}
 
-	@Override
-	public String toString() {
-		return "Insurance [insuranceId=" + insuranceId + ", issueDate=" + issueDate + ", customer=" + customer
-				+ ", policy=" + policy + ", vehicle=" + vehicle + ", travel=" + travel + ", claim=" + claim + "]";
-	}
+	
 
 }
